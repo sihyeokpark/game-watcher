@@ -1,20 +1,13 @@
 import requests
-from bs4 import BeautifulSoup
+import json
 
-player_name = 'hue2020'
-url = 'https://plancke.io/hypixel/player/stats/' + player_name
+key = 'edc63735-7a78-4e6a-a509-54c7cab3badc'
+player_uuid = 'eeab4c6642ba48a9a3995ee593422b02'
+url = 'https://api.hypixel.net/status?key=' + key + '&uuid=' + player_uuid
 
 html = requests.get(url)
-soup = BeautifulSoup(html.text, 'html.parser')
+result = json.loads(html.text)
 
-result = soup.select('#wrapper > div.content-page > div > div > div:nth-child(2) > div.col-lg-3.b-0.p-0 > div:nth-child(2) > div')
-string = ''
-for res in result: string = res.text.replace('\n', '').replace('\u200b', '')
-
-arr = dict()
-if string == 'StatusOffline': print('오프라인')
-else:
-    string = string.replace('StatusGameType: ', '').replace('Mode: ', '').split(' ')
-    arr["gameType"], arr["mode"] = string[0], string[1]
-
-print(arr)
+if result['success']: 
+    print('온라인')
+else: print('오프라인')
