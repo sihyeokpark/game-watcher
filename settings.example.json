@@ -1,3 +1,8 @@
 {
-    "bot"
+    "bot_token": "",
+    "channel_id": "",
+    "hipixel": {
+        "key": "",
+        "player_uuid": ""
+    }
 }
