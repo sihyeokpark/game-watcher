@@ -9,6 +9,10 @@ const PATH = path.resolve()
 
 const { hypixel, channel_id } = readJSONSync(PATH + '/settings.json')
 
+const bold = (str: string) => { return '**' + str + '**' }
+
+let time = 0
+
 export default async function main() {
     const url = 'https://api.hypixel.net/status?key=' + hypixel.key + '&uuid=' + hypixel.player_uuid
     const body = await (await fetch(url)).json()
@@ -17,6 +21,7 @@ export default async function main() {
     const skin_url = 'https://crafatar.com/avatars/' + hypixel.player_uuid
 
     if (body.session.online) {
+        time++
         sendMsg(new MessageEmbed({
             title: name,
             author: {
@@ -24,7 +29,7 @@ export default async function main() {
                 icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4'
             },
             thumbnail: {
-                url: 'https://crafatar.com/avatars/' + hypixel.player_uuid,
+                url: skin_url,
             },
             color: 0xffffff,
             fields: [
@@ -34,9 +39,13 @@ export default async function main() {
                 }
             ],
             timestamp: new Date(),
+            footer: {
+                text: time + '분 동안 게임 중..'
+            }
         }), client, channel_id)
     }
-    else console.log('[hypixel] offline')
+    else {
+        console.log('[hypixel] offline')
+        time = 0
+    }
 }
-
-const bold = (str: string) => { return '**' + str + '**' } 
