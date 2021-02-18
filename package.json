@@ -7,10 +7,13 @@
   "author": "시혁 박 <exon.indiv@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/fs-extra": "^9.0.7",
     "@types/node": "^14.14.28",
     "@types/node-fetch": "^2.5.8"
   },
   "dependencies": {
+    "discord.js": "^12.5.1",
+    "fs-extra": "^9.1.0",
     "node-fetch": "^2.6.1"
   }
 }
