@@ -12,13 +12,19 @@ const { hypixel, channel_id } = readJSONSync(PATH + '/settings.json')
 export default async function main() {
     const url = 'https://api.hypixel.net/status?key=' + hypixel.key + '&uuid=' + hypixel.player_uuid
     const body = await (await fetch(url)).json()
+    const profile_url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + hypixel.player_uuid
+    const { name } = await (await fetch(profile_url)).json()
+    const skin_url = 'https://crafatar.com/avatars/' + hypixel.player_uuid
 
     if (body.session.online) {
         sendMsg(new MessageEmbed({
-            title: '[hypixel]',
+            title: name,
             author: {
                 name: 'Hypixel',
                 icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4'
+            },
+            thumbnail: {
+                url: 'https://crafatar.com/avatars/' + hypixel.player_uuid,
             },
             color: 0xffffff,
             fields: [
