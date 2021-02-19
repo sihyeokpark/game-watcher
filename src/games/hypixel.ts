@@ -17,11 +17,11 @@ export default async function main() {
     const url = 'https://api.hypixel.net/status?key=' + hypixel.key + '&uuid=' + hypixel.player_uuid
     const body = await (await fetch(url)).json()
     const profile_url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + hypixel.player_uuid
-    const { name } = await (await fetch(profile_url)).json()
     const skin_url = 'https://crafatar.com/avatars/' + hypixel.player_uuid
 
     if (body.session.online) {
         time++
+        const { name } = await (await fetch(profile_url)).json()
         sendMsg(new MessageEmbed({
             title: name,
             author: {
@@ -44,8 +44,5 @@ export default async function main() {
             }
         }), client, channel_id)
     }
-    else {
-        console.log('[hypixel] offline')
-        time = 0
-    }
+    else time = 0
 }
