@@ -7,7 +7,7 @@
 3. edit settings.example.json to settings.json 
 
 ### settings.json
-```
+``` json
 bot_token: discord bot's token,
 channel_id: discord channel id to send message,
 hypixel: {
