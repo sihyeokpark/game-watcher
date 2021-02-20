@@ -3,6 +3,7 @@ import { Client } from 'discord.js'
 import { readJSONSync } from 'fs-extra'
 
 import hypixel from './games/hypixel'
+import lol from './games/lol'
 
 const PATH = path.resolve()
 const { bot_token : token } = readJSONSync(PATH + '/settings.json')
@@ -13,6 +14,7 @@ client.on('ready', () => {
     
     setInterval(() => {
         hypixel()
+        lol()
     }, 60000)
     
 })
