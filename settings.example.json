@@ -4,5 +4,9 @@
     "hypixel": {
         "key": "",
         "player_uuid": ""
+    },
+    "lol": {
+        "key": "",
+        "player_name": ""
     }
 }
