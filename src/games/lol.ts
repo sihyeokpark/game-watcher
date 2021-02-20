@@ -20,6 +20,7 @@ export default async function main() {
     const body = await (await fetch(spectator_url)).json()
 
     if (body) {
+        console.log(time)
         time++
         sendMsg(new MessageEmbed({
             title: lol.player_name,
