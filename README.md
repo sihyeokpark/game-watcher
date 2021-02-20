@@ -13,6 +13,10 @@
 "hypixel": {
     "key": "hypixel api key",
     "player_uuid": "minecraft user's uuid"
+},
+"lol": {
+    "key": "lol api key",
+    "player_name": "lol username"
 }
 ```
 
@@ -20,6 +24,7 @@
 ### Hypixel
 ![hypixel](https://media.discordapp.net/attachments/700329896429224007/811953085198893086/unknown.png)
 
-### LOL (개발중)
+### LOL
+![lol](https://cdn.discordapp.com/attachments/811199708110389278/812593713024204800/unknown.png)
 ### Overwatch (개발중)
 ### Battle Ground (개발중)
