@@ -19,7 +19,7 @@ export default async function main() {
     const spectator_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + id + '?api_key=' + lol.key
     const body = await (await fetch(spectator_url)).json()
 
-    if (body) {
+    if (body.gameType) {
         console.log(time)
         time++
         sendMsg(new MessageEmbed({
