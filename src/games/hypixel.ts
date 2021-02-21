@@ -21,7 +21,6 @@ export default async function main() {
         const profile_url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + hypixel.player_uuid[i]
         const skin_url = 'https://crafatar.com/avatars/' + hypixel.player_uuid[i]
     
-        time[i] = 0
         if (body.session.online) {
             time[i]++
             const { name } = await (await fetch(profile_url)).json()
