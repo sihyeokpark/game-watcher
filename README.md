@@ -11,10 +11,12 @@
 "bot_token": "discord bot's token",
 "channel_id": "discord channel id to send message",
 "hypixel": {
+    "enable": "game enable",
     "key": "hypixel api key",
     "player_uuid": "minecraft user's uuid"
 },
 "lol": {
+    "enable": "game enable",
     "key": "lol api key",
     "player_name": "lol username"
 }
