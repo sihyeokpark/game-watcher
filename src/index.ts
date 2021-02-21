@@ -6,15 +6,15 @@ import hypixel from './games/hypixel'
 import lol from './games/lol'
 
 const PATH = path.resolve()
-const { bot_token : token, hypixel, lol } = readJSONSync(PATH + '/settings.json')
+const { bot_token : token, hypixel_json, lol_json } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
 
 client.on('ready', () => {
     console.log('[*] Ready')
     
     setInterval(() => {
-        if (hypixel.enable) hypixel()
-        if (lol.enable) lol()
+        if (hypixel_json.enable) hypixel()
+        if (lol_json.enable) lol()
     }, 60000)
     
 })
