@@ -6,7 +6,7 @@ import hypixel from './games/hypixel'
 import lol from './games/lol'
 
 const PATH = path.resolve()
-const { bot_token : token, hypixel_json, lol_json } = readJSONSync(PATH + '/settings.json')
+const { bot_token : token, hypixel : hypixel_json , lol : lol_json } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
 
 client.on('ready', () => {
