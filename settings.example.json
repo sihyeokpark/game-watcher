@@ -2,11 +2,13 @@
     "bot_token": "",
     "channel_id": "",
     "hypixel": {
+        "enable": false,
         "key": "",
-        "player_uuid": ""
+        "player_uuid": [""]
     },
     "lol": {
+        "enable": false,
         "key": "",
-        "player_name": ""
+        "player_name": [""]
     }
 }
