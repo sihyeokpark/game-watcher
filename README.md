@@ -13,12 +13,12 @@
 "hypixel": {
     "enable": "game enable",
     "key": "hypixel api key",
-    "player_uuid": "minecraft user's uuid"
+    "player_uuid": ["minecraft user's uuids"]
 },
 "lol": {
     "enable": "game enable",
     "key": "lol api key",
-    "player_name": "lol username"
+    "player_name": ["lol usernames"]
 }
 ```
 
