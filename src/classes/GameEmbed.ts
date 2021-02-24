@@ -6,7 +6,6 @@ export default class GameEmbed {
     embed!: MessageEmbed
 
     constructor(embedTemplate: EmbedTemplate) {
-        const field_value: string[] = embedTemplate.value.split(' ')
         this.embed = new MessageEmbed({
             title: embedTemplate.title,
                 author: {
@@ -20,7 +19,7 @@ export default class GameEmbed {
                 fields: [
                     {
                         name: embedTemplate.name + ' 실행 중',
-                        value: this.bold(field_value[0]) + ' 에서 ' + this.bold(field_value[1]) + ' 하는 중'
+                        value: this.bold(embedTemplate.value[0]) + ' 에서 ' + this.bold(embedTemplate.value[1]) + ' 하는 중'
                     }
                 ],
                 timestamp: new Date(),

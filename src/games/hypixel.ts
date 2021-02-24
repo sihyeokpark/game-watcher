@@ -3,13 +3,11 @@ import fetch from 'node-fetch'
 import { readJSONSync } from 'fs-extra'
 import sendMsg from '../util/sendMsg'
 import { client } from '..'
-import { MessageEmbed } from 'discord.js'
+import GameEmbed from '../classes/GameEmbed'
 
 const PATH = path.resolve()
 
 const { hypixel, channel_id } = readJSONSync(PATH + '/settings.json')
-
-const bold = (str: string) => '**' + str + '**'
 
 let time: number[] = []
 for (let i = 0; i < hypixel.player_uuid.length; i++) time[i] = 0
@@ -24,27 +22,18 @@ export default async function main() {
             time[i]++
             const { name } = await (await fetch(profile_url)).json()
             const skin_url = 'https://minotar.net/helm/' + name + '/100'
-            sendMsg(new MessageEmbed({
+
+            const embed: GameEmbed = new GameEmbed({
                 title: name,
-                author: {
-                    name: 'Hypixel',
-                    icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4'
-                },
-                thumbnail: {
-                    url: skin_url,
-                },
+                name: 'Hypixel',
+                icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4',
+                thumnail_url: skin_url,
                 color: 0xffffff,
-                fields: [
-                    {
-                        name: 'Hypixel 실행 중',
-                        value: bold(body.session.gameType) + ' 에서 ' + bold(body.session.mode) + ' 하는 중'
-                    }
-                ],
-                timestamp: new Date(),
-                footer: {
-                    text: time[i] + '분 동안 게임 중..'
-                }
-            }), client, channel_id)
+                value: [body.session.gameType, body.session.mode],
+                text: time[i]
+            })
+
+            sendMsg(embed.getEmbed(), client, channel_id)
         }
         else time[i] = 0
     }

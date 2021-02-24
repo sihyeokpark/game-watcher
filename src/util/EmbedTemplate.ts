@@ -4,6 +4,6 @@ export default interface EmbedTemplate {
     icon_url: string,
     thumnail_url?: string,
     color: number,
-    value: string,
+    value: string[],
     text: number
 }

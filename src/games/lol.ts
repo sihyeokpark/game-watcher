@@ -4,12 +4,11 @@ import { readJSONSync } from 'fs-extra'
 import sendMsg from '../util/sendMsg'
 import { client } from '..'
 import { MessageEmbed } from 'discord.js'
+import GameEmbed from '../classes/GameEmbed'
 
 const PATH = path.resolve()
 
 const { lol, channel_id } = readJSONSync(PATH + '/settings.json')
-
-const bold = (str: string) => '**' + str + '**'
 
 let time: number[] = []
 for (let i = 0; i < lol.player_name.length; i++) time[i] = 0
@@ -23,24 +22,17 @@ export default async function main() {
 
         if (body.gameType) {
             time[i]++
-            sendMsg(new MessageEmbed({
+
+            const embed: GameEmbed = new GameEmbed({
                 title: lol.player_name,
-                author: {
-                    name: 'League of Legends',
-                    icon_url: 'https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/ko-kr/production/ko-kr/static/placeholder-1c66220c6149b49352c4cf496f70ad86.jpg'
-                },
+                name: 'League of Legends',
+                icon_url: 'https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/ko-kr/production/ko-kr/static/placeholder-1c66220c6149b49352c4cf496f70ad86.jpg',
                 color: 0xffffff,
-                fields: [
-                    {
-                        name: 'League of Legends 실행 중',
-                        value: bold(body.gameType) + ' 에서 ' + bold(body.gameMode) + ' 하는 중'
-                    }
-                ],
-                timestamp: new Date(),
-                footer: {
-                    text: time + '분 동안 게임 중..'
-                }
-            }), client, channel_id)
+                value: [body.gameType, body.gameMode],
+                text: time[i]
+            })
+
+            sendMsg(embed.getEmbed(), client, channel_id)
         } else time[i] = 0
     }
 }
