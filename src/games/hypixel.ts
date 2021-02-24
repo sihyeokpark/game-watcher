@@ -9,7 +9,7 @@ const PATH = path.resolve()
 
 const { hypixel, channel_id } = readJSONSync(PATH + '/settings.json')
 
-const bold = (str: string) => { return '**' + str + '**' }
+const bold = (str: string) => '**' + str + '**'
 
 let time: number[] = []
 for (let i = 0; i < hypixel.player_uuid.length; i++) time[i] = 0

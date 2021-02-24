@@ -9,7 +9,7 @@ const PATH = path.resolve()
 
 const { lol, channel_id } = readJSONSync(PATH + '/settings.json')
 
-const bold = (str: string) => { return '**' + str + '**' }
+const bold = (str: string) => '**' + str + '**'
 
 let time: number[] = []
 for (let i = 0; i < lol.player_name.length; i++) time[i] = 0
@@ -22,7 +22,6 @@ export default async function main() {
         const body = await (await fetch(spectator_url)).json()
 
         if (body.gameType) {
-            console.log(time)
             time[i]++
             sendMsg(new MessageEmbed({
                 title: lol.player_name,
@@ -44,7 +43,4 @@ export default async function main() {
             }), client, channel_id)
         } else time[i] = 0
     }
-   
 }
-
-main()
