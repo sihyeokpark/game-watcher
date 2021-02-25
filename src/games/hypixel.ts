@@ -5,6 +5,7 @@ import sendMsg from '../util/sendMsg'
 import { client } from '..'
 import GameEmbed from '../classes/GameEmbed'
 import { Message } from 'discord.js'
+import EmbedTemplate from 'src/util/EmbedTemplate'
 
 const PATH = path.resolve()
 
@@ -26,29 +27,21 @@ export default async function main() {
             const skin_url = 'https://minotar.net/helm/' + name + '/100'
 
             time[i]++
-            
-            if (time[i] === 1) {
-                const embed: GameEmbed = new GameEmbed({
-                    title: name,
-                    name: 'Hypixel',
-                    icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4',
-                    thumnail_url: skin_url,
-                    color: 0xffffff,
-                    value: [body.session.gameType, body.session.mode],
-                    text: time[i]
-                })
 
+            const embed: GameEmbed = new GameEmbed({
+                title: name,
+                name: 'Hypixel',
+                icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4',
+                thumnail_url: skin_url,
+                color: 0xffffff,
+                value: [body.session.gameType, body.session.mode],
+                text: time[i]
+            })
+
+            if (time[i] === 1) {
                 msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
             } else {
-                msg[i].edit(new GameEmbed({
-                    title: name,
-                    name: 'Hypixel',
-                    icon_url: 'https://avatars.githubusercontent.com/u/3840546?s=280&v=4',
-                    thumnail_url: skin_url,
-                    color: 0xffffff,
-                    value: [body.session.gameType, body.session.mode],
-                    text: time[i]
-                }).getEmbed())
+                msg[i].edit(embed.getEmbed())
             }
         }
         else time[i] = 0

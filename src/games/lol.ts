@@ -22,28 +22,21 @@ export default async function main() {
         const spectator_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + id + '?api_key=' + lol.key
         const body = await (await fetch(spectator_url)).json()
 
+        const embed: GameEmbed = new GameEmbed({
+            title: lol.player_name,
+            name: 'League of Legends',
+            icon_url: 'https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/ko-kr/production/ko-kr/static/placeholder-1c66220c6149b49352c4cf496f70ad86.jpg',
+            color: 0xffffff,
+            value: [body.gameType, body.gameMode],
+            text: time[i]
+        })
+
         if (body.gameType) {
             time[i]++
             if (time[i] === 1) {
-                const embed: GameEmbed = new GameEmbed({
-                    title: lol.player_name,
-                    name: 'League of Legends',
-                    icon_url: 'https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/ko-kr/production/ko-kr/static/placeholder-1c66220c6149b49352c4cf496f70ad86.jpg',
-                    color: 0xffffff,
-                    value: [body.gameType, body.gameMode],
-                    text: time[i]
-                })
-
                 msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
             } else {
-                msg[i].edit(new GameEmbed({
-                    title: lol.player_name,
-                    name: 'League of Legends',
-                    icon_url: 'https://lolstatic-a.akamaihd.net/frontpage/apps/prod/harbinger-l10-website/ko-kr/production/ko-kr/static/placeholder-1c66220c6149b49352c4cf496f70ad86.jpg',
-                    color: 0xffffff,
-                    value: [body.gameType, body.gameMode],
-                    text: time[i]
-                }).getEmbed())
+                msg[i].edit(embed.getEmbed())
             }
         } else time[i] = 0
     }
