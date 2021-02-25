@@ -31,7 +31,7 @@ export default class GameEmbed {
     private bold: Function = (str: string) => '**' + str + '**'
 
     public getEmbed() {
-        this.embed.timestamp = new Date().getTime() + 24 * 60 * 60 * 1000
+        this.embed.timestamp = new Date().getTime()
         return this.embed
     }
 }
