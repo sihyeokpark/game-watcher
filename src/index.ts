@@ -9,7 +9,7 @@ const PATH = path.resolve()
 const { bot_token : token, hypixel : hypixel_json , lol : lol_json } = readJSONSync(PATH + '/settings.json')
 export const client = new Client()
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log('[*] Ready')
     
     setInterval(() => {
