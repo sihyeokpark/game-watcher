@@ -18,9 +18,11 @@ let msg: Message[] = []
 export default async function main() {
     for (let i = 0; i < lol.player_name.length; i++) {
         const url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + encodeURIComponent(lol.player_name) + '?api_key=' + lol.key
-        const { id } = await (await fetch(url)).json()
+        const { id, status } = await (await fetch(url)).json()
         const spectator_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + id + '?api_key=' + lol.key
         const body = await (await fetch(spectator_url)).json()
+
+        if (status.status_code === 403) throw Error('Invalid LOL API key')
 
         const embed: GameEmbed = new GameEmbed({
             title: lol.player_name,

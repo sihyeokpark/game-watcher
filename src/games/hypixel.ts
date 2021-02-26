@@ -22,6 +22,8 @@ export default async function main() {
         const body = await (await fetch(url)).json()
         const profile_url = 'https://sessionserver.mojang.com/session/minecraft/profile/' + hypixel.player_uuid[i]
 
+        if ((!body.success) && body.cause === 'Invalid API key') throw Error('Invalid Hypixel API key')
+
         if (body.session.online) {
             const { name } = await (await fetch(profile_url)).json()
             const skin_url = 'https://minotar.net/helm/' + name + '/100'
