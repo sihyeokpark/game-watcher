@@ -1,4 +1,4 @@
-import { Client, MessageEmbed } from "discord.js"
+import { MessageEmbed } from "discord.js"
 
 export default async function sendMsg(content: string | MessageEmbed, client: any, channel_id: string) {
     try {

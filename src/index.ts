@@ -2,8 +2,8 @@ import path from 'path'
 import { Client } from 'discord.js'
 import { readJSONSync } from 'fs-extra'
 
-import hypixel from './games/hypixel'
 import lol from './games/lol'
+import hypixel from './games/hypixel'
 
 const PATH = path.resolve()
 const { bot_token : token, hypixel : hypixel_json , lol : lol_json } = readJSONSync(PATH + '/settings.json')

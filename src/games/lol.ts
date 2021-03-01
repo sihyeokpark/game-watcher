@@ -1,10 +1,10 @@
 import path from 'path'
-import fetch from 'node-fetch'
-import { readJSONSync } from 'fs-extra'
-import sendMsg from '../util/sendMsg'
 import { client } from '..'
-import GameEmbed from '../classes/GameEmbed'
+import fetch from 'node-fetch'
 import { Message } from 'discord.js'
+import sendMsg from '../util/sendMsg'
+import { readJSONSync } from 'fs-extra'
+import GameEmbed from '../classes/GameEmbed'
 
 const PATH = path.resolve()
 
