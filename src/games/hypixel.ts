@@ -40,11 +40,8 @@ export default async function main() {
                 text: time[i]
             })
 
-            if (time[i] === 1) {
-                msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
-            } else {
-                msg[i].edit(embed.getEmbed())
-            }
+            if (time[i] === 1) msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
+            else msg[i].edit(embed.getEmbed())
         }
         else time[i] = 0
     }
