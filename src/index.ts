@@ -16,7 +16,6 @@ client.on('ready', async () => {
         if (hypixel_json.enable) hypixel()
         if (lol_json.enable) lol()
     }, 60000)
-    
 })
 
 client.login(token)
