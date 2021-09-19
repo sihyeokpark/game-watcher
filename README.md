@@ -1,6 +1,5 @@
 # GameWatcherBot
 게임 시작하면 알림 오는 봇 ~~일명 게임 스토킹 봇~~
-<img src="./img/gameWatcher.png" height="100"/>
 
 ## How to Use
 1. git clone
