@@ -18,4 +18,8 @@ client.on('ready', async () => {
     }, 60000)
 })
 
+client.on('message', async (msg) => {
+    if (msg.content === 'ㅎㅇ') msg.channel.send('d')
+})
+
 client.login(token)

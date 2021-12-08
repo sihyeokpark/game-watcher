@@ -22,6 +22,8 @@ export default async function main() {
         const spectator_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + id + '?api_key=' + lol.key
         const body = await (await fetch(spectator_url)).json()
 
+        console.log(body)
+
         if (status.status_code === 403) throw Error('Invalid LOL API key')
 
         const embed: GameEmbed = new GameEmbed({
@@ -35,8 +37,8 @@ export default async function main() {
 
         if (body.gameType) {
             time[i]++
-            if (time[i] === 1)msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
-            else  msg[i].edit(embed.getEmbed())
+            if (time[i] === 1) msg[i] = await sendMsg(embed.getEmbed(), client, channel_id)
+            else msg[i].edit(embed.getEmbed())
         } else time[i] = 0
     }
 }

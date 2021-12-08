@@ -29,5 +29,3 @@
 
 ### LOL
 ![lol](https://cdn.discordapp.com/attachments/811199708110389278/812593713024204800/unknown.png)
-### Overwatch (개발중)
-### Battle Ground (개발중)
